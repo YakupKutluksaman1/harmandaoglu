@@ -1,0 +1,17 @@
+[Unit]
+Description=Harmandaoğlu A.Ş Next.js
+After=network.target
+
+[Service]
+Type=simple
+User=harmandaoglu
+WorkingDirectory=/var/www/harmandaoglu
+Environment=NODE_ENV=production
+Environment=PORT=3000
+Environment=NEXT_PUBLIC_SITE_URL=https://harmandaoglu.com.tr
+ExecStart=/usr/bin/npm start
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

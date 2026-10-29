@@ -1,0 +1,189 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+@theme inline {
+  --color-canvas: #0b131f;
+  --color-surface: #161f2c;
+  --color-gold: #d4af37;
+  --color-bronze: #c5a880;
+  --color-ivory: #f5f0eb;
+  --color-muted: #a0aec0;
+  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-inter);
+}
+
+:root {
+  --cursor-x: 50vw;
+  --cursor-y: 50vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: #0b131f;
+  color: #f5f0eb;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+html {
+  scroll-behavior: auto;
+  scroll-padding-top: calc(5rem + env(safe-area-inset-top));
+}
+
+body {
+  min-height: 100%;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+@media (max-width: 1023px) {
+  body {
+    padding-bottom: calc(5.1rem + env(safe-area-inset-bottom));
+  }
+}
+
+::selection {
+  background: color-mix(in srgb, #d4af37 38%, transparent);
+  color: #f5f0eb;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b131f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #d4af37, #c5a880);
+  border-radius: 999px;
+}
+
+@media (pointer: coarse) {
+  .glass-panel {
+    backdrop-filter: blur(8px);
+    background: color-mix(in srgb, #161f2c 88%, transparent);
+    box-shadow:
+      0 0 0 1px color-mix(in srgb, #c5a880 8%, transparent) inset,
+      0 16px 40px -28px rgba(0, 0, 0, 0.55);
+  }
+}
+
+.gold-hairline {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, #d4af37 55%, transparent),
+    #d4af37,
+    color-mix(in srgb, #d4af37 55%, transparent),
+    transparent
+  );
+}
+
+.glass-panel {
+  background: color-mix(in srgb, #161f2c 72%, transparent);
+  backdrop-filter: blur(10px);
+  border: 1px solid color-mix(in srgb, #d4af37 22%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, #c5a880 8%, transparent) inset,
+    0 24px 80px -32px rgba(0, 0, 0, 0.65),
+    0 0 80px -28px color-mix(in srgb, #d4af37 28%, transparent);
+}
+
+.gold-input {
+  width: 100%;
+  background: color-mix(in srgb, #0b131f 70%, transparent);
+  border: 1px solid color-mix(in srgb, #d4af37 28%, transparent);
+  color: #f5f0eb;
+  border-radius: 2px;
+  padding: 1rem 1rem;
+  font-size: 16px;
+  line-height: 1.4;
+  outline: none;
+  transition:
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.gold-input:focus {
+  border-color: #d4af37;
+  box-shadow: 0 0 0 3px color-mix(in srgb, #d4af37 16%, transparent);
+}
+
+.gold-input::placeholder {
+  color: color-mix(in srgb, #a0aec0 80%, transparent);
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.333%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 32s linear infinite;
+}
+
+@media (max-width: 767px) {
+  .animate-marquee {
+    animation-duration: 26s;
+  }
+}
+
+.wa-float-orb {
+  box-shadow:
+    0 0 0 6px color-mix(in srgb, #d4af37 18%, transparent),
+    0 18px 40px -16px rgba(212, 175, 55, 0.7);
+  animation: wa-pulse 2.4s ease-out infinite;
+}
+
+@keyframes wa-pulse {
+  0% {
+    box-shadow:
+      0 0 0 0 color-mix(in srgb, #d4af37 42%, transparent),
+      0 18px 40px -16px rgba(212, 175, 55, 0.7);
+  }
+  70% {
+    box-shadow:
+      0 0 0 14px color-mix(in srgb, #d4af37 0%, transparent),
+      0 18px 40px -16px rgba(212, 175, 55, 0.45);
+  }
+  100% {
+    box-shadow:
+      0 0 0 0 color-mix(in srgb, #d4af37 0%, transparent),
+      0 18px 40px -16px rgba(212, 175, 55, 0.7);
+  }
+}
+
+.section-frame {
+  padding-inline: 1.25rem;
+  padding-block: 4.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-frame {
+    padding-inline: 2.5rem;
+    padding-block: 6.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
