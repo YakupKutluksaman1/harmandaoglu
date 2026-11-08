@@ -85,7 +85,7 @@ export function Navbar() {
           <span className="grid h-8 w-8 place-items-center border border-[rgba(227,218,201,0.35)] font-serif text-[13px] text-champagne">
             H
           </span>
-          <span className="font-serif text-[1.05rem] tracking-[-0.02em] text-ivory md:text-lg">
+          <span className="font-serif text-[1.2rem] tracking-[-0.02em] text-ivory md:text-lg">
             Harmandaoğlu
           </span>
         </a>

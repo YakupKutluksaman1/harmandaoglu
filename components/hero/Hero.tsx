@@ -47,16 +47,24 @@ export function Hero() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="meta mb-4 text-champagne/90 md:mb-6"
+            className="mb-3 font-serif text-[clamp(2.35rem,10vw,3.4rem)] leading-none tracking-[-0.035em] text-champagne md:mb-5 md:text-[2.75rem]"
           >
-            Antalya · {office.coords}
+            Harmandaoğlu
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+            className="meta mb-5 text-muted md:mb-7"
+          >
+            A.Ş · Antalya · {office.coords}
           </motion.p>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.95, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
-            className="font-serif text-[clamp(2.05rem,8.6vw,4.85rem)] leading-[1.08] tracking-[-0.035em] text-ivory"
+            transition={{ duration: 0.95, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="font-serif text-[clamp(1.85rem,7.4vw,4.4rem)] leading-[1.1] tracking-[-0.035em] text-ivory"
           >
             <span className="block">Antalya’da yüksek</span>
             <span className="block">mimari ve restorasyonun</span>
