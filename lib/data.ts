@@ -91,8 +91,8 @@ export const office = {
   whatsappHref: "https://wa.me/905324036446",
   instagramHref: "https://www.instagram.com/harmandaogluas/",
   instagramHandle: "@harmandaogluas",
-  email: "info@harmandaoglu.com",
-  emailHref: "mailto:info@harmandaoglu.com",
+  email: "info@harmandaoglu.com.tr",
+  emailHref: "mailto:info@harmandaoglu.com.tr",
   website: "https://harmandaoglu.com.tr",
   hours: "Pazartesi — Cumartesi · 09:00–18:00",
 };

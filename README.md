@@ -1,6 +1,9 @@
 # Harmandaoğlu A.Ş
 
-Antalya tadilat, anahtar teslim ve villa restorasyonu sitesi. Canlı adres: [harmandaoglu.com.tr](https://harmandaoglu.com.tr)
+Antalya tadilat, anahtar teslim ve villa restorasyonu sitesi.
+
+- Asıl adres: [harmandaoglu.com.tr](https://harmandaoglu.com.tr)
+- `harmandaoglu.com` ve `www` adresleri kalıcı olarak `.com.tr`’ye yönlenir
 
 ## Yerel çalışma
 
@@ -13,13 +16,15 @@ npm run dev
 
 ## VPS yayını (Ubuntu + Nginx + Node 20)
 
-1. DNS: `harmandaoglu.com.tr` ve `www` A kaydı VPS IP’sine.
+1. DNS: `harmandaoglu.com.tr`, `www.harmandaoglu.com.tr`, `harmandaoglu.com`, `www.harmandaoglu.com` A kaydı aynı VPS IP’sine.
 2. Sunucuda:
 
 ```bash
-sudo bash deploy/setup.sh git@github.com:KULLANICI/harmandaoglu.git
+sudo bash deploy/setup.sh git@github.com:YakupKutluksaman1/harmandaoglu.git
 sudo apt-get install -y certbot python3-certbot-nginx
-sudo certbot --nginx -d harmandaoglu.com.tr -d www.harmandaoglu.com.tr
+sudo certbot --nginx \
+  -d harmandaoglu.com.tr -d www.harmandaoglu.com.tr \
+  -d harmandaoglu.com -d www.harmandaoglu.com
 ```
 
 3. Ortam değişkeni `NEXT_PUBLIC_SITE_URL=https://harmandaoglu.com.tr` systemd servisinde tanımlı.

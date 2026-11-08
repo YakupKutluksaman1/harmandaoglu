@@ -35,21 +35,20 @@ export function BeforeAfter() {
             Tadilatın öncesi ve sonrası.
           </h2>
           <p className="mt-4 max-w-lg text-[15px] leading-7 text-muted md:mt-5 md:text-sm">
-            Çizgiyi parmağınızla kaydırın. Eski mekân ile yenilenen yaşam alanını aynı
-            karede görün.
+            Ortadaki tutamacı yana kaydırın. Eski mekân ile yenilenen yaşam alanını
+            aynı karede görün.
           </p>
         </div>
         <div
           ref={frame}
           data-reveal
-          className="glass-panel relative aspect-[4/5] overflow-hidden touch-none sm:aspect-[16/10]"
-          onPointerDown={(e) => {
-            e.currentTarget.setPointerCapture(e.pointerId);
-            setHint(false);
-            setFromClientX(e.clientX);
-          }}
-          onPointerMove={(e) => {
-            if (e.currentTarget.hasPointerCapture(e.pointerId)) setFromClientX(e.clientX);
+          className="glass-panel relative aspect-[5/6] overflow-hidden touch-pan-y sm:aspect-[16/10] md:aspect-[16/10]"
+          onClick={(e) => {
+            // Masaüstünde kareye tıklayınca konuma atlansın; dikey scroll bozulmasın.
+            if (window.matchMedia("(pointer: fine)").matches) {
+              setHint(false);
+              setFromClientX(e.clientX);
+            }
           }}
         >
           <Image src={AFTER} alt="Sonra" fill className="object-cover" sizes="100vw" quality={90} />
@@ -64,7 +63,7 @@ export function BeforeAfter() {
           </div>
           {hint && (
             <div className="pointer-events-none absolute bottom-6 left-1/2 z-20 -translate-x-1/2 border border-gold/30 bg-canvas/70 px-3 py-1.5 text-[9px] tracking-[0.22em] text-ivory uppercase backdrop-blur-sm md:hidden">
-              Kaydırın
+              Tutamacı kaydırın
             </div>
           )}
           <motion.div
@@ -72,16 +71,24 @@ export function BeforeAfter() {
             dragConstraints={frame}
             dragElastic={0}
             dragMomentum={false}
+            dragPropagation={false}
+            onPointerDown={(e) => e.stopPropagation()}
+            onDragStart={() => setHint(false)}
             onDrag={(_, info) => {
               setHint(false);
               setFromClientX(info.point.x);
             }}
-            className="absolute top-0 z-10 flex h-full -translate-x-1/2 cursor-ew-resize flex-col items-center"
+            className="absolute top-0 z-10 flex h-full w-14 -translate-x-1/2 cursor-ew-resize touch-none flex-col items-center md:w-12"
             style={{ left: `${value}%` }}
+            aria-label="Önce sonra karşılaştırma tutamacı"
+            role="slider"
+            aria-valuemin={8}
+            aria-valuemax={92}
+            aria-valuenow={Math.round(value)}
           >
             <span className="h-full w-px bg-gold" />
-            <span className="absolute top-1/2 grid h-16 w-16 -translate-y-1/2 place-items-center rounded-full border border-gold bg-canvas/85 shadow-[0_0_0_8px_rgba(11,19,31,0.28)] md:h-14 md:w-14">
-              <span className="font-serif text-xl text-gold">↔</span>
+            <span className="absolute top-1/2 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border border-gold bg-canvas/90 shadow-[0_0_0_8px_rgba(11,19,31,0.28)] md:h-12 md:w-12">
+              <span className="font-serif text-lg text-gold md:text-xl">↔</span>
             </span>
           </motion.div>
         </div>

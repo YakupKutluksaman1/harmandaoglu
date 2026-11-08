@@ -56,7 +56,7 @@ export function Scope() {
                   type="button"
                   onClick={() => setOpen(index)}
                   aria-expanded={active}
-                  className="flex w-full items-start gap-4 py-5 text-left md:gap-5 md:py-6"
+                  className="flex w-full items-start gap-4 py-6 text-left md:gap-5 md:py-6"
                 >
                   <span
                     className={`relative z-10 mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full border font-serif text-[11px] transition-colors duration-300 md:h-10 md:w-10 md:text-sm ${

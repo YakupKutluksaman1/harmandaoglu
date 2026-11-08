@@ -73,6 +73,18 @@ const nextConfig: NextConfig = {
         destination: "https://harmandaoglu.com.tr/:path*",
         permanent: true,
       },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "harmandaoglu.com" }],
+        destination: "https://harmandaoglu.com.tr/:path*",
+        permanent: true,
+      },
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.harmandaoglu.com" }],
+        destination: "https://harmandaoglu.com.tr/:path*",
+        permanent: true,
+      },
       { source: "/isler", destination: "/", permanent: true },
       { source: "/isler/:path*", destination: "/", permanent: true },
       { source: "/yaklasim", destination: "/", permanent: true },
