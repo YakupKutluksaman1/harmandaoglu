@@ -12,7 +12,7 @@ export function ScrollProgress() {
 
   return (
     <motion.div
-      className="fixed top-[env(safe-area-inset-top)] right-0 left-0 z-[70] h-[2px] origin-left bg-gold"
+      className="fixed top-[env(safe-area-inset-top)] right-0 left-0 z-[70] h-px origin-left bg-champagne"
       style={{ scaleX }}
     />
   );

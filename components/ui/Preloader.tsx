@@ -7,7 +7,8 @@ export function Preloader() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setVisible(false), 1800);
+    const coarse = window.matchMedia("(pointer: coarse)").matches;
+    const timer = window.setTimeout(() => setVisible(false), coarse ? 900 : 1400);
     return () => window.clearTimeout(timer);
   }, []);
 
@@ -17,15 +18,33 @@ export function Preloader() {
         <motion.div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-canvas"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } }}
+          exit={{
+            opacity: 0,
+            transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
+          }}
         >
-          <div className="flex flex-col items-center gap-6">
-            <p className="text-[10px] tracking-[0.55em] text-bronze uppercase">Antalya</p>
-            <h2 className="px-5 text-center font-serif text-[1.55rem] tracking-[0.12em] text-ivory uppercase sm:text-6xl sm:tracking-[0.18em]">
+          <div className="flex flex-col items-center gap-4 px-6">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="meta text-muted"
+            >
+              Antalya
+            </motion.p>
+            <motion.h2
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="text-center font-serif text-[clamp(2rem,8vw,4.2rem)] tracking-[-0.035em] text-ivory"
+            >
               Harmandaoğlu
-            </h2>
-            <div className="h-px w-40 bg-gold" />
-            <p className="font-serif text-sm tracking-[0.48em] text-gold uppercase">A.Ş</p>
+            </motion.h2>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="h-px w-16 origin-center bg-champagne/70"
+            />
           </div>
         </motion.div>
       )}

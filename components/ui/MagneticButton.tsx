@@ -1,3 +1,8 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+
 type MagneticButtonProps = {
   children: React.ReactNode;
   href?: string;
@@ -10,10 +15,11 @@ type MagneticButtonProps = {
 };
 
 const variants = {
-  solid: "bg-gold text-canvas hover:bg-[#e0c25a] border border-gold",
+  solid:
+    "bg-champagne text-canvas hover:bg-ivory border border-champagne/80 shadow-[0_0_0_1px_rgba(227,218,201,0.08)]",
   outline:
-    "border border-gold/70 text-ivory bg-transparent hover:bg-gold/10 hover:border-gold",
-  ghost: "border border-transparent text-ivory hover:text-gold",
+    "border border-[rgba(227,218,201,0.28)] text-ivory bg-transparent hover:border-champagne/70 hover:shadow-[0_0_32px_-12px_rgba(197,160,89,0.45)]",
+  ghost: "border border-transparent text-ivory hover:text-champagne",
 };
 
 export function MagneticButton({
@@ -26,13 +32,36 @@ export function MagneticButton({
   external = false,
   rel,
 }: MagneticButtonProps) {
-  const classes = `inline-flex min-h-12 items-center justify-center gap-3 px-5 py-3.5 text-[10px] sm:min-h-0 sm:px-7 sm:py-3.5 sm:text-[11px] tracking-[0.28em] uppercase font-medium transition-colors duration-300 ${variants[variant]} ${className}`;
+  const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const sx = useSpring(x, { stiffness: 220, damping: 18, mass: 0.35 });
+  const sy = useSpring(y, { stiffness: 220, damping: 18, mass: 0.35 });
+
+  const onMove = (event: React.MouseEvent) => {
+    const el = ref.current;
+    if (!el || window.matchMedia("(pointer: coarse)").matches) return;
+    const rect = el.getBoundingClientRect();
+    x.set((event.clientX - rect.left - rect.width / 2) * 0.22);
+    y.set((event.clientY - rect.top - rect.height / 2) * 0.22);
+  };
+
+  const onLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  const classes = `inline-flex min-h-12 items-center justify-center gap-3 px-6 py-3.5 font-mono text-[9px] tracking-[0.18em] uppercase transition-colors duration-500 sm:min-h-[3rem] sm:px-8 sm:text-[10px] sm:tracking-[0.24em] ${variants[variant]} ${className}`;
 
   if (href) {
     return (
-      <a
+      <motion.a
+        ref={ref as React.RefObject<HTMLAnchorElement>}
         href={href}
         onClick={onClick}
+        onMouseMove={onMove}
+        onMouseLeave={onLeave}
+        style={{ x: sx, y: sy }}
         className={classes}
         {...(external
           ? { target: "_blank", rel: rel ?? "noreferrer" }
@@ -41,13 +70,21 @@ export function MagneticButton({
             : {})}
       >
         {children}
-      </a>
+      </motion.a>
     );
   }
 
   return (
-    <button type={type} onClick={onClick} className={classes}>
+    <motion.button
+      ref={ref as React.RefObject<HTMLButtonElement>}
+      type={type}
+      onClick={onClick}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      style={{ x: sx, y: sy }}
+      className={classes}
+    >
       {children}
-    </button>
+    </motion.button>
   );
 }

@@ -1,19 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Cormorant_Garamond, IBM_Plex_Mono, Manrope } from "next/font/google";
 import { ClientProviders } from "@/components/providers/ClientProviders";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { seo, siteUrl } from "@/lib/site";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const editorial = Cormorant_Garamond({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-playfair",
+  weight: ["400", "500", "600"],
+  variable: "--font-editorial",
   display: "swap",
 });
 
-const inter = Inter({
+const body = Manrope({
   subsets: ["latin", "latin-ext"],
-  variable: "--font-inter",
+  variable: "--font-body",
+  display: "swap",
+});
+
+const mono = IBM_Plex_Mono({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500"],
+  variable: "--font-mono",
   display: "swap",
 });
 
@@ -86,14 +94,14 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#0B131F",
+  themeColor: "#08090A",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="tr"
-      className={`${playfair.variable} ${inter.variable} h-full antialiased`}
+      className={`${editorial.variable} ${body.variable} ${mono.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-canvas font-sans text-ivory">
         <JsonLd />

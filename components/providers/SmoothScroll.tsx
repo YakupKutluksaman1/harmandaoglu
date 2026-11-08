@@ -10,13 +10,23 @@ export function SmoothScroll({ children }: { children: React.ReactNode }) {
     gsap.registerPlugin(ScrollTrigger);
 
     const coarse = window.matchMedia("(pointer: coarse)").matches;
+
+    // Mobilde yerel kaydırma daha akıcı; Lenis sadece masaüstünde
+    if (coarse) {
+      const onResize = () => ScrollTrigger.refresh();
+      window.addEventListener("resize", onResize);
+      return () => {
+        window.removeEventListener("resize", onResize);
+        ScrollTrigger.getAll().forEach((t) => t.kill());
+      };
+    }
+
     const lenis = new Lenis({
       duration: 0.72,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: !coarse,
+      smoothWheel: true,
       syncTouch: false,
       wheelMultiplier: 1,
-      touchMultiplier: 1,
     });
 
     lenis.on("scroll", ScrollTrigger.update);

@@ -1,81 +1,75 @@
 export const navLinks = [
-  { href: "#hizmetler", label: "Hizmetler" },
+  { href: "#malzeme", label: "Malzeme" },
+  { href: "#projeler", label: "Arşiv" },
   { href: "#donusum", label: "Dönüşüm" },
-  { href: "#projeler", label: "Projeler" },
-  { href: "#iletisim", label: "İletişim" },
+  { href: "#iletisim", label: "Özel Proje" },
 ] as const;
 
-export const services = [
+export const materials = [
   {
-    id: "01",
-    title: "Taahhüt & Tadilat",
-    copy: "Mevcut yapının güvenli, düzenli ve uzun ömürlü yenilenmesi. Keşiften teslime tek ekip, tek standart — Antalya’da taahhüt ve tadilat işleri.",
-    meta: "Taahhüt · Tadilat",
-    focus: ["Keşif", "Uygulama", "Teslim"],
+    id: "marble",
+    title: "Calacatta Borghini",
+    origin: "Carrara, İtalya",
+    copy: "Doğal damarlı beyaz mermer. Islak hacim, şömine çevresi ve özel tezgâh uygulamalarında seçilir.",
+    use: ["Mutfak tezgâhı", "Hamam & spa", "Şömine"],
+    tone: "#E8E2D8",
   },
   {
-    id: "02",
-    title: "Anahtar Teslim",
-    copy: "Planlama, uygulama ve son detaya kadar tek elden yönetim. Teslim günü yaşamaya hazır mekânlar.",
-    meta: "Anahtar Teslim",
-    focus: ["Planlama", "Yönetim", "Teslim"],
+    id: "glass",
+    title: "Oluklu Cam",
+    origin: "Avrupa üretimi",
+    copy: "Dikey oluklu cam; ışığı yumuşatır, mahremiyet verir. Bölücü ve dolap kapaklarında kullanılır.",
+    use: ["İç bölücü", "Dolap yüzeyi", "Duş"],
+    tone: "#C9D0D4",
   },
   {
-    id: "03",
-    title: "Banyo & Mutfak",
-    copy: "Islak hacimlerin sıhhi tesisat, seramik, tezgâh ve aydınlatma ile baştan kurgulanması. Kullanışlı, temiz ve kalıcı çözümler.",
-    meta: "Banyo · Mutfak",
-    focus: ["Tesisat", "Seramik", "Aydınlatma"],
+    id: "oak",
+    title: "Dumanlanmış Meşe",
+    origin: "Orta Avrupa",
+    copy: "Dumanlanmış meşe; sıcak, mat ve uzun ömürlü zemin / panel dili.",
+    use: ["Zemin", "Duvar paneli", "Mobilya"],
+    tone: "#5C4636",
   },
   {
-    id: "04",
-    title: "Villa & Dekorasyon",
-    copy: "Villaların strüktürel yenilenmesi ve kişiye özel dekorasyon. Antalya’nın ışığına ve yaşam ritmine uygun iç mekânlar.",
-    meta: "Villa · Dekorasyon",
-    focus: ["Strüktür", "İç mekân", "Dekorasyon"],
+    id: "brass",
+    title: "Fırçalı Pirinç",
+    origin: "Atölye işi",
+    copy: "Fırçalı pirinç detay; kapı kolları, aydınlatma ve ince metal işçiliği.",
+    use: ["Aydınlatma", "Kulplar", "Çerçeve"],
+    tone: "#C5A059",
   },
 ] as const;
 
 export const projects = [
   {
-    title: "Lara Villa Restorasyonu",
+    title: "Lara Sahil Villası",
     location: "Lara, Antalya",
     area: "420 m²",
     year: "2025",
     type: "Villa Restorasyonu",
     image:
       "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=2400&q=90",
-    span: "lg:col-span-7 lg:row-span-2 min-h-[320px] lg:min-h-[640px]",
+    layout: "featured",
   },
   {
-    title: "Konyaaltı Mutfak",
+    title: "Konyaaltı Minimalist Rezidans",
     location: "Konyaaltı, Antalya",
-    area: "38 m²",
-    year: "2025",
-    type: "Mutfak Yenileme",
-    image:
-      "https://images.unsplash.com/photo-1556912173-46c336c7fd55?auto=format&fit=crop&w=2000&q=90",
-    span: "lg:col-span-5 min-h-[280px] lg:min-h-[320px]",
-  },
-  {
-    title: "Muratpaşa Banyo",
-    location: "Muratpaşa, Antalya",
-    area: "14 m²",
-    year: "2024",
-    type: "Banyo Yenileme",
-    image:
-      "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=2000&q=90",
-    span: "lg:col-span-5 min-h-[280px] lg:min-h-[320px]",
-  },
-  {
-    title: "Belek Anahtar Teslim",
-    location: "Belek, Antalya",
     area: "280 m²",
     year: "2025",
     type: "Anahtar Teslim",
     image:
-      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2400&q=90",
-    span: "lg:col-span-7 min-h-[300px] lg:min-h-[380px]",
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=90",
+    layout: "tall",
+  },
+  {
+    title: "Belek Ufuk Malikânesi",
+    location: "Belek, Antalya",
+    area: "650 m²",
+    year: "2025",
+    type: "Villa Restorasyonu",
+    image:
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2400&q=90",
+    layout: "wide",
   },
 ] as const;
 
@@ -84,7 +78,7 @@ export const office = {
   owner: "Onur KUTLUKSAMAN",
   role: "Yönetim Kurulu Başkanı",
   line1: "Antalya",
-  line2: "Taahhüt · Tadilat · Anahtar Teslim",
+  line2: "Anahtar teslim villa · Restorasyon · Mekân mimarisi",
   phone: "5324036446",
   phoneDisplay: "+90 532 403 64 46",
   telHref: "tel:+905324036446",
@@ -95,22 +89,56 @@ export const office = {
   emailHref: "mailto:info@harmandaoglu.com.tr",
   website: "https://harmandaoglu.com.tr",
   hours: "Pazartesi — Cumartesi · 09:00–18:00",
+  coords: "36.8969° N, 30.7133° E",
 };
 
 export function whatsappUrl(text?: string) {
   const message =
     text ??
-    "Merhaba, HARMANDAOĞLU A.Ş resmi internet sitesi üzerinden ulaşıyorum. Tadilat / anahtar teslim projem için ücretsiz keşif ve bilgi almak istiyorum.";
+    "Merhaba, HARMANDAOĞLU A.Ş resmi internet sitesi üzerinden ulaşıyorum. Özel proje / keşif için bilgi almak istiyorum.";
   return `${office.whatsappHref}?text=${encodeURIComponent(message)}`;
 }
 
-export const marqueeItems = [
-  "TAAHHÜT",
-  "TADİLAT",
-  "ANAHTAR TESLİM",
-  "BANYO",
-  "MUTFAK",
-  "VİLLA",
-  "RESTORASYON",
-  "DEKORASYON",
+export const propertyTypes = [
+  "Müstakil Villa",
+  "Penthouse",
+  "Ticari Mekân",
+] as const;
+
+export const styleOptions = [
+  "Akdeniz Minimalizmi",
+  "Neoklasik",
+  "Sıcak Çağdaş",
+] as const;
+
+/** SEO/JSON-LD hizmet listesi için korunur */
+export const services = [
+  {
+    id: "01",
+    title: "Taahhüt & Tadilat",
+    copy: "Mevcut yapının güvenli, düzenli ve uzun ömürlü yenilenmesi.",
+    meta: "Taahhüt · Tadilat",
+    focus: ["Keşif", "Uygulama", "Teslim"],
+  },
+  {
+    id: "02",
+    title: "Anahtar Teslim",
+    copy: "Planlama, uygulama ve son detaya kadar tek elden yönetim.",
+    meta: "Anahtar Teslim",
+    focus: ["Planlama", "Yönetim", "Teslim"],
+  },
+  {
+    id: "03",
+    title: "Villa Restorasyonu",
+    copy: "Villaların strüktürel yenilenmesi ve kişiye özel mekân mimarisi.",
+    meta: "Villa · Restorasyon",
+    focus: ["Strüktür", "İç mekân", "Dekorasyon"],
+  },
+  {
+    id: "04",
+    title: "Banyo & Mutfak",
+    copy: "Islak hacimlerin tesisat, malzeme ve aydınlatma ile baştan kurgulanması.",
+    meta: "Banyo · Mutfak",
+    focus: ["Tesisat", "Malzeme", "Aydınlatma"],
+  },
 ] as const;
