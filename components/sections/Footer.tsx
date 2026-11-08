@@ -47,7 +47,7 @@ export function Footer() {
           </div>
         </div>
 
-        <p className="mt-12 overflow-hidden font-serif text-[17vw] leading-[0.8] tracking-tight text-ivory/[0.06] uppercase select-none md:mt-16 md:text-[11vw]">
+        <p className="mt-12 w-full font-serif text-[clamp(1.6rem,8vw,10rem)] leading-[0.9] tracking-[-0.03em] text-ivory/[0.06] uppercase select-none whitespace-nowrap md:mt-16 md:text-[clamp(3rem,9.2vw,11rem)]">
           Harmandaoğlu
         </p>
 
