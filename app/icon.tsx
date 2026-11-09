@@ -1,27 +1,12 @@
 import { ImageResponse } from "next/og";
+import { Monogram, brandFonts } from "@/lib/brand-image";
 
-export const size = { width: 32, height: 32 };
+export const size = { width: 96, height: 96 };
 export const contentType = "image/png";
 
-export default function Icon() {
-  return new ImageResponse(
-    (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "#0B131F",
-          color: "#D4AF37",
-          fontSize: 20,
-          fontWeight: 600,
-        }}
-      >
-        H
-      </div>
-    ),
-    { ...size },
-  );
+export default async function Icon() {
+  return new ImageResponse(<Monogram size={size.width} />, {
+    ...size,
+    fonts: await brandFonts(),
+  });
 }

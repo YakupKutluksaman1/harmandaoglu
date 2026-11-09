@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { projects } from "@/lib/data";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { BriefCue } from "@/components/ui/BriefCue";
 
 type Project = (typeof projects)[number];
 
@@ -54,7 +55,7 @@ function ProjectCard({
         <h3 className="mt-2.5 max-w-[16ch] font-serif text-[clamp(1.55rem,6.2vw,2.6rem)] leading-[1.12] tracking-[-0.03em] text-ivory sm:mt-3">
           {project.title}
         </h3>
-        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[9px] tracking-[0.16em] text-muted uppercase sm:text-[10px]">
+        <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-[10px] tracking-[0.16em] text-muted uppercase sm:text-[11px]">
           <span>{project.location}</span>
           <span className="text-champagne">{project.area}</span>
         </div>
@@ -118,14 +119,15 @@ function ProjectViewer({ project, onClose }: { project: Project; onClose: () => 
           <h3 className="mt-3 font-serif text-[1.7rem] leading-[1.12] tracking-[-0.03em] text-ivory md:text-4xl">
             {project.title}
           </h3>
-          <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 font-mono text-[9px] tracking-[0.16em] text-muted uppercase sm:text-[10px]">
+          <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 font-mono text-[10px] tracking-[0.16em] text-muted uppercase sm:text-[11px]">
             <span>{project.location}</span>
             <span className="text-champagne">{project.area}</span>
             <span>{project.year}</span>
           </div>
-          <p className="mt-5 text-[14px] leading-[1.65] text-muted md:mt-6 md:text-[15px] md:leading-7">
-            {project.location} — {project.area}. Özel proje ve keşif için ofisle
-            yazışın.
+          <p className="mt-5 text-[15px] leading-[1.65] text-muted md:mt-6 md:text-[16px] md:leading-7">
+            {project.location} — {project.area}. Benzer bir proje için bir
+            dakikalık özel brifingi doldurun; doğrudan Onur Kutluksaman’a
+            iletilsin.
           </p>
           <div className="mt-7">
             <MagneticButton
@@ -153,12 +155,12 @@ export function Projects() {
           className="mb-7 flex flex-col gap-3 md:mb-12 md:flex-row md:items-end md:justify-between md:gap-5"
         >
           <div>
-            <p className="meta mb-3 text-champagne md:mb-4">03 — Arşiv</p>
+            <p className="meta mb-3 text-champagne md:mb-4">02 — Arşiv</p>
             <h2 className="headline max-w-xl text-[clamp(1.9rem,7vw,4.2rem)] leading-[1.1] text-ivory">
               Seçilmiş işler.
             </h2>
           </div>
-          <p className="max-w-sm text-[14px] leading-[1.65] text-muted md:text-[15px] md:leading-7">
+          <p className="max-w-sm text-[15px] leading-[1.65] text-muted md:text-[16px] md:leading-7">
             Lara, Konyaaltı ve Belek’ten anahtar teslim villa ve restorasyon
             örnekleri.
           </p>
@@ -179,6 +181,11 @@ export function Projects() {
             </div>
           ))}
         </div>
+
+        <BriefCue
+          eyebrow="Sıradaki proje"
+          line="Mekânınızı bir dakikada anlatın."
+        />
       </SectionReveal>
       <AnimatePresence>
         {active && (

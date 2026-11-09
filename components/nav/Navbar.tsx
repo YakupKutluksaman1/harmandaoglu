@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useMotionValue, useSpring } from "framer-motion";
 import { navLinks, office } from "@/lib/data";
 import { MagneticButton } from "@/components/ui/MagneticButton";
@@ -33,7 +34,7 @@ function MagneticNavLink({ href, label }: { href: string; label: string }) {
         setHovered(false);
       }}
       style={{ x: sx, y: sy }}
-      className="relative shrink-0 font-mono text-[10px] tracking-[0.22em] text-muted uppercase transition-colors hover:text-ivory"
+      className="relative shrink-0 font-mono text-[11px] tracking-[0.2em] text-ivory/70 uppercase transition-colors hover:text-ivory"
     >
       {label}
       <motion.span
@@ -47,11 +48,16 @@ function MagneticNavLink({ href, label }: { href: string; label: string }) {
 }
 
 export function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [pastHero, setPastHero] = useState(false);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+      setPastHero(window.scrollY > window.innerHeight * 0.55);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -70,7 +76,8 @@ export function Navbar() {
     };
   }, [open]);
 
-  const menuLinks = navLinks.filter((link) => link.href !== "#iletisim");
+  const menuLinks = navLinks.filter((link) => link.href !== "/#iletisim");
+  const showWordmark = pastHero || open || pathname !== "/";
 
   return (
     <header
@@ -81,11 +88,23 @@ export function Navbar() {
       }`}
     >
       <div className="relative mx-auto flex h-14 max-w-[1440px] items-center justify-between px-5 md:h-[72px] md:px-10">
-        <a href="#hero" className="relative z-[70] flex items-center gap-2.5">
-          <span className="grid h-8 w-8 place-items-center border border-[rgba(227,218,201,0.35)] font-serif text-[13px] text-champagne">
+        <a
+          href="/#hero"
+          aria-label="Harmandaoğlu — başa dön"
+          onClick={() => setOpen(false)}
+          className="relative z-[70] flex items-center gap-2.5"
+        >
+          <span className="grid h-8 w-8 place-items-center border border-[rgba(227,218,201,0.35)] font-serif text-[14px] text-champagne">
             H
           </span>
-          <span className="font-serif text-[1.2rem] tracking-[-0.02em] text-ivory md:text-lg">
+          <span
+            aria-hidden
+            className={`font-serif text-[1.2rem] tracking-[-0.02em] text-ivory transition-[opacity,transform,filter] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:text-lg ${
+              showWordmark
+                ? "translate-x-0 opacity-100 blur-0"
+                : "pointer-events-none -translate-x-2 opacity-0 blur-[3px]"
+            }`}
+          >
             Harmandaoğlu
           </span>
         </a>
@@ -102,7 +121,7 @@ export function Navbar() {
           </nav>
 
           <div className="hidden lg:block">
-            <MagneticButton href="#iletisim" variant="outline">
+            <MagneticButton href="/#iletisim" variant="outline">
               Özel Proje
             </MagneticButton>
           </div>
@@ -137,23 +156,13 @@ export function Navbar() {
             transition={{ duration: 0.35 }}
             className="fixed inset-0 z-[60] flex h-[100dvh] flex-col bg-canvas lg:hidden"
           >
-            <div className="flex h-14 shrink-0 items-center justify-between px-5 pt-[env(safe-area-inset-top)]">
-              <span className="font-serif text-[1.05rem] text-ivory">Menü</span>
-              <button
-                type="button"
-                className="relative grid h-11 w-11 place-items-center"
-                onClick={() => setOpen(false)}
-                aria-label="Kapat"
-              >
-                <span className="absolute h-px w-5 rotate-45 bg-champagne" />
-                <span className="absolute h-px w-5 -rotate-45 bg-champagne" />
-              </button>
-            </div>
+            <div aria-hidden className="h-14 shrink-0 box-content pt-[env(safe-area-inset-top)]" />
 
             <div className="flex flex-1 flex-col px-5 pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
-              <p className="meta mb-8 text-muted">
-                Antalya · {office.coords}
-              </p>
+              <div className="mt-6 flex items-center gap-3">
+                <span className="h-px w-7 bg-champagne/70" />
+                <p className="meta text-muted">Antalya · {office.coords}</p>
+              </div>
 
               <nav className="flex flex-1 flex-col justify-center">
                 {navLinks.map((link, i) => (
@@ -168,9 +177,16 @@ export function Navbar() {
                       duration: 0.55,
                       ease: [0.16, 1, 0.3, 1],
                     }}
-                    className="border-b border-[rgba(227,218,201,0.1)] py-4 font-serif text-[clamp(2rem,9vw,2.6rem)] leading-none tracking-[-0.035em] text-ivory"
+                    className={`flex items-center justify-between gap-4 border-b border-[rgba(227,218,201,0.1)] py-4 font-serif text-[clamp(2rem,9vw,2.6rem)] leading-none tracking-[-0.035em] ${
+                      link.href === "/#iletisim" ? "text-champagne" : "text-ivory"
+                    }`}
                   >
                     {link.label}
+                    {link.href === "/#iletisim" && (
+                      <span className="meta shrink-0 border border-champagne/40 px-2.5 py-1.5 text-champagne">
+                        ~1 dk
+                      </span>
+                    )}
                   </motion.a>
                 ))}
               </nav>

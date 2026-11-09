@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: seo.title,
-    template: "%s | Harmandaoğlu A.Ş",
+    template: "%s · Harmandaoğlu",
   },
   description: seo.description,
   keywords: seo.keywords,
@@ -52,23 +52,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "tr_TR",
     url: siteUrl,
-    siteName: "Harmandaoğlu A.Ş",
+    siteName: "Harmandaoğlu",
     title: seo.title,
     description: seo.description,
-    images: [
-      {
-        url: "/hero-renovasyon.jpg",
-        width: 1920,
-        height: 1080,
-        alt: "Harmandaoğlu A.Ş — Antalya tadilat ve anahtar teslim",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: seo.title,
     description: seo.description,
-    images: ["/hero-renovasyon.jpg"],
   },
   robots: {
     index: true,

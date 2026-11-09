@@ -1,13 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger, useGSAP);
-}
+import { useEffect, useRef } from "react";
 
 export function SectionReveal({
   children,
@@ -18,24 +11,28 @@ export function SectionReveal({
 }) {
   const ref = useRef<HTMLDivElement>(null);
 
-  useGSAP(
-    () => {
-      const nodes = ref.current?.querySelectorAll("[data-reveal]");
-      if (!nodes?.length) return;
-      gsap.from(nodes, {
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.08,
-        ease: "power3.out",
-        scrollTrigger: { trigger: ref.current, start: "top 80%" },
-      });
-    },
-    { scope: ref },
-  );
+  useEffect(() => {
+    const scope = ref.current;
+    if (!scope) return;
+    scope.querySelectorAll<HTMLElement>("[data-reveal]").forEach((node, i) => {
+      node.style.transitionDelay = `${Math.min(i, 6) * 80}ms`;
+    });
+    scope.dataset.armed = "";
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        scope.dataset.shown = "";
+        observer.disconnect();
+      },
+      { rootMargin: "0px 0px -20% 0px" },
+    );
+    observer.observe(scope);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} className={`reveal-scope ${className}`}>
       {children}
     </div>
   );

@@ -1,8 +1,9 @@
 export const navLinks = [
-  { href: "#malzeme", label: "Malzeme" },
-  { href: "#projeler", label: "Arşiv" },
-  { href: "#donusum", label: "Dönüşüm" },
-  { href: "#iletisim", label: "Özel Proje" },
+  { href: "/#projeler", label: "Arşiv" },
+  { href: "/#donusum", label: "Dönüşüm" },
+  { href: "/#surec", label: "Süreç" },
+  { href: "/#malzeme", label: "Malzeme" },
+  { href: "/#iletisim", label: "Özel Proje" },
 ] as const;
 
 export const materials = [
@@ -100,18 +101,83 @@ export function whatsappUrl(text?: string) {
 }
 
 export const propertyTypes = [
-  "Müstakil Villa",
-  "Penthouse",
-  "Ticari Mekân",
+  { label: "Müstakil Villa", note: "Bahçeli, tek aile" },
+  { label: "Rezidans / Daire", note: "Site içi, yüksek kat" },
+  { label: "Penthouse", note: "Teras ve çatı katı" },
+  { label: "Ticari Mekân", note: "Butik otel, ofis, mağaza" },
+] as const;
+
+export const scopeOptions = [
+  "Komple restorasyon",
+  "Anahtar teslim",
+  "İç mimari & dekorasyon",
+  "Mutfak",
+  "Banyo & spa",
+  "Cephe & çatı",
+  "Havuz & peyzaj",
+  "Aydınlatma",
+] as const;
+
+export const regionOptions = [
+  "Lara",
+  "Konyaaltı",
+  "Belek",
+  "Kundu",
+  "Kemer",
+  "Kaş / Kalkan",
+  "Antalya dışı",
 ] as const;
 
 export const styleOptions = [
   "Akdeniz Minimalizmi",
   "Neoklasik",
   "Sıcak Çağdaş",
+  "Sizin önerinize açığım",
 ] as const;
 
-/** SEO/JSON-LD hizmet listesi için korunur */
+export const timelineOptions = [
+  "Hemen",
+  "1–3 ay içinde",
+  "3–6 ay içinde",
+  "Planlama aşamasında",
+] as const;
+
+export const budgetOptions = [
+  "Görüşmede konuşalım",
+  "5–10 M ₺",
+  "10–25 M ₺",
+  "25 M ₺ +",
+] as const;
+
+export const processSteps = [
+  {
+    title: "Keşif",
+    duration: "1. hafta",
+    copy: "Yerinde inceleme, ölçüm ve ihtiyaç analizi. Yapının mevcut durumunu birlikte okuruz.",
+  },
+  {
+    title: "Proje",
+    duration: "2–4 hafta",
+    copy: "Mimari çizimler, malzeme seçkisi, kalem kalem bütçe ve yazılı iş takvimi.",
+  },
+  {
+    title: "Uygulama",
+    duration: "Takvime göre",
+    copy: "Tek ekip, tek muhatap. Her aşamada fotoğraflı ilerleme paylaşımı.",
+  },
+  {
+    title: "Teslim",
+    duration: "Anahtar teslim",
+    copy: "Son kontroller, temizlik ve anahtar teslimi; teslim sonrası destek.",
+  },
+] as const;
+
+export const assurances = [
+  "Tek muhatap",
+  "Yazılı bütçe ve takvim",
+  "Fotoğraflı ilerleme",
+] as const;
+
 export const services = [
   {
     id: "01",

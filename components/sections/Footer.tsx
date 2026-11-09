@@ -1,6 +1,6 @@
 "use client";
 
-import { office } from "@/lib/data";
+import { navLinks, office } from "@/lib/data";
 
 export function Footer() {
   return (
@@ -11,48 +11,63 @@ export function Footer() {
             <p className="font-serif text-[1.65rem] tracking-[-0.03em] text-champagne md:text-2xl">
               Harmandaoğlu A.Ş
             </p>
-            <p className="mt-3 max-w-xs text-[14px] leading-[1.65] text-muted">
+            <p className="mt-3 max-w-xs text-[15px] leading-[1.65] text-muted">
               Antalya’da anahtar teslim villa restorasyonu ve kişiye özel mekân
               mimarisi.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 text-[14px] text-muted md:gap-16">
-            <div className="space-y-1">
+          <div className="grid grid-cols-[minmax(0,1.55fr)_minmax(0,1fr)] gap-6 text-[15px] text-muted md:grid-cols-2 md:gap-16">
+            <div className="min-w-0 space-y-1">
               <p className="meta mb-3 text-champagne">İletişim</p>
               <p className="py-1.5 text-ivory">{office.owner}</p>
               <a href={office.telHref} className="block py-1.5 text-ivory">
                 {office.phoneDisplay}
               </a>
-              <a href={office.emailHref} className="block break-all py-1.5 text-ivory">
+              <a
+                href={office.emailHref}
+                className="block truncate py-1.5 text-[14px] text-ivory sm:text-[15px]"
+              >
                 {office.email}
               </a>
             </div>
             <div className="space-y-1">
               <p className="meta mb-3 text-champagne">Dolaşım</p>
-              <a href="#malzeme" className="block py-1.5">
-                Malzeme
-              </a>
-              <a href="#projeler" className="block py-1.5">
-                Arşiv
-              </a>
-              <a href="#donusum" className="block py-1.5">
-                Dönüşüm
-              </a>
-              <a href="#iletisim" className="block py-1.5">
-                Özel Proje
-              </a>
+              {navLinks.map((link) => (
+                <a key={link.href} href={link.href} className="block py-1.5">
+                  {link.label}
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
-        <p className="mt-12 w-full overflow-hidden font-serif text-[clamp(1.5rem,12vw,10rem)] leading-[0.88] tracking-[-0.04em] text-ivory/[0.045] uppercase select-none whitespace-nowrap md:mt-20">
+        <p
+          aria-hidden
+          className="mt-14 w-full bg-[linear-gradient(180deg,rgba(227,218,201,0.2)_0%,rgba(227,218,201,0.02)_85%)] bg-clip-text pb-[0.06em] text-center font-serif text-[10.4vw] leading-[0.9] tracking-[-0.045em] whitespace-nowrap text-transparent uppercase select-none md:mt-20 min-[1440px]:text-[9.4rem]"
+        >
           Harmandaoğlu
         </p>
 
-        <div className="mt-5 flex flex-col justify-between gap-2 border-t border-[rgba(227,218,201,0.12)] pt-5 meta text-muted md:flex-row">
-          <p>© {new Date().getFullYear()} Harmandaoğlu A.Ş</p>
-          <p>Antalya</p>
+        <div className="mt-5 flex items-center justify-between gap-4 border-t border-[rgba(227,218,201,0.12)] pt-5 meta text-muted">
+          <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-4">
+            <p>© {new Date().getFullYear()} Harmandaoğlu A.Ş · Antalya</p>
+            <a
+              href="/kvkk"
+              className="inline-flex min-h-9 items-center transition-colors hover:text-champagne"
+            >
+              KVKK Aydınlatma Metni
+            </a>
+          </div>
+          <a
+            href="#"
+            className="group inline-flex min-h-11 items-center gap-2 text-champagne"
+          >
+            Başa dön
+            <span className="inline-block transition-transform duration-500 group-hover:-translate-y-0.5">
+              ↑
+            </span>
+          </a>
         </div>
       </div>
     </footer>

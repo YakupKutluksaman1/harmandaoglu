@@ -9,5 +9,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
+    {
+      url: `${siteUrl}/kvkk`,
+      lastModified: new Date("2026-11-09"),
+      changeFrequency: "yearly",
+      priority: 0.2,
+    },
   ];
 }

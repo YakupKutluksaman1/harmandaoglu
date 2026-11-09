@@ -5,20 +5,20 @@ export const siteUrl = (
 ).replace(/\/$/, "");
 
 export const seo = {
-  title: "Harmandaoğlu A.Ş | Antalya Tadilat, Anahtar Teslim ve Villa Restorasyonu",
+  title: "Harmandaoğlu · Antalya Villa Restorasyonu ve Mimari",
   description:
-    "Harmandaoğlu A.Ş, Antalya’da taahhüt ve tadilat, anahtar teslim proje, banyo & mutfak yenileme, villa restorasyonu ve özel dekorasyon hizmeti verir. Keşif için WhatsApp üzerinden ulaşın.",
+    "Antalya’da anahtar teslim villa restorasyonu ve kişiye özel mekân mimarisi. Lara, Belek ve Konyaaltı’nda keşiften teslime tek ekip, tek muhatap.",
   keywords: [
+    "Harmandaoğlu",
     "Harmandaoğlu A.Ş",
     "Onur Kutluksaman",
-    "Antalya tadilat",
-    "Antalya anahtar teslim",
-    "Antalya banyo yenileme",
-    "Antalya mutfak yenileme",
     "Antalya villa restorasyonu",
-    "Antalya iç dekorasyon",
-    "Lara tadilat",
-    "Konyaaltı tadilat",
+    "Antalya anahtar teslim villa",
+    "Antalya lüks tadilat",
+    "Antalya iç mimari",
+    "Lara villa restorasyonu",
+    "Belek villa restorasyonu",
+    "Konyaaltı villa restorasyonu",
   ],
 };
 
@@ -38,8 +38,9 @@ export function businessJsonLd() {
         name: office.name,
         legalName: office.name,
         url: siteUrl,
+        alternateName: "Harmandaoğlu",
         image: `${siteUrl}/hero-renovasyon.jpg`,
-        logo: `${siteUrl}/hero-renovasyon.jpg`,
+        logo: `${siteUrl}/logo.png`,
         description: seo.description,
         telephone: phone,
         email: office.email,
@@ -121,7 +122,8 @@ export function businessJsonLd() {
         "@type": "WebSite",
         "@id": websiteId,
         url: siteUrl,
-        name: office.name,
+        name: "Harmandaoğlu",
+        alternateName: [office.name, "Harmandaoğlu Antalya"],
         inLanguage: "tr-TR",
         description: seo.description,
         publisher: { "@id": orgId },

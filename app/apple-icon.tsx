@@ -1,28 +1,12 @@
 import { ImageResponse } from "next/og";
+import { Monogram, brandFonts } from "@/lib/brand-image";
 
 export const size = { width: 180, height: 180 };
 export const contentType = "image/png";
 
-export default function AppleIcon() {
-  return new ImageResponse(
-    (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "#0B131F",
-          color: "#D4AF37",
-          fontSize: 92,
-          fontWeight: 600,
-          border: "6px solid #D4AF37",
-        }}
-      >
-        H
-      </div>
-    ),
-    { ...size },
-  );
+export default async function AppleIcon() {
+  return new ImageResponse(<Monogram size={size.width} />, {
+    ...size,
+    fonts: await brandFonts(),
+  });
 }

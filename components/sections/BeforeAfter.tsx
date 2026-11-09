@@ -3,11 +3,8 @@
 import { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import { SectionReveal } from "@/components/ui/SectionReveal";
-
-const BEFORE =
-  "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=2400&q=90";
-const AFTER =
-  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2400&q=90";
+const BEFORE = "/donusum-once.jpg";
+const AFTER = "/donusum-sonra.jpg";
 
 export function BeforeAfter() {
   const frame = useRef<HTMLDivElement>(null);
@@ -26,11 +23,11 @@ export function BeforeAfter() {
     <section id="donusum" className="section-frame">
       <SectionReveal className="mx-auto max-w-[1440px]">
         <div data-reveal className="mb-7 max-w-xl md:mb-12">
-          <p className="meta mb-3 text-champagne md:mb-4">04 — Dönüşüm</p>
+          <p className="meta mb-3 text-champagne md:mb-4">03 — Dönüşüm</p>
           <h2 className="headline text-[clamp(1.9rem,7vw,4.2rem)] leading-[1.1] text-ivory">
             Yapıdan yaşama.
           </h2>
-          <p className="mt-4 text-[14px] leading-[1.65] text-muted md:text-[15px] md:leading-7">
+          <p className="mt-4 text-[15px] leading-[1.65] text-muted md:text-[16px] md:leading-7">
             Kaydırarak ham yapı ile tamamlanmış mekânı aynı karede okuyun.
           </p>
         </div>
@@ -38,7 +35,7 @@ export function BeforeAfter() {
         <div
           ref={frame}
           data-reveal
-          className="relative -mx-5 aspect-[3/4] touch-none overflow-hidden border-y border-[rgba(227,218,201,0.12)] select-none sm:mx-0 sm:aspect-[16/10] sm:border"
+          className="relative -mx-5 aspect-square touch-none overflow-hidden border-y border-[rgba(227,218,201,0.12)] select-none sm:mx-auto sm:aspect-[4/3] sm:max-w-[1100px] sm:border"
           onPointerDown={(e) => {
             (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
             dragging.current = true;
@@ -58,9 +55,9 @@ export function BeforeAfter() {
         >
           <Image
             src={AFTER}
-            alt="Sonra"
+            alt="Restorasyon sonrası: kemerli deniz manzaralı villa salonu"
             fill
-            className="object-cover"
+            className="object-cover object-[center_30%]"
             sizes="100vw"
             quality={90}
           />
@@ -70,18 +67,18 @@ export function BeforeAfter() {
           >
             <Image
               src={BEFORE}
-              alt="Önce"
+              alt="Restorasyon öncesi: aynı salonun kaba inşaat hâli"
               fill
-              className="object-cover"
+              className="object-cover object-[center_30%]"
               sizes="100vw"
               quality={90}
             />
           </div>
 
-          <div className="pointer-events-none absolute top-5 left-5 meta text-ivory/90">
+          <div className="pointer-events-none absolute top-4 left-4 border border-[rgba(227,218,201,0.18)] bg-canvas/55 px-3 py-1.5 meta text-ivory backdrop-blur-md">
             Önce
           </div>
-          <div className="pointer-events-none absolute top-5 right-5 meta text-champagne">
+          <div className="pointer-events-none absolute top-4 right-4 border border-champagne/30 bg-canvas/55 px-3 py-1.5 meta text-champagne backdrop-blur-md">
             Sonra
           </div>
 
@@ -94,17 +91,33 @@ export function BeforeAfter() {
           )}
 
           <div
-            className="pointer-events-none absolute top-0 z-10 flex h-full w-12 -translate-x-1/2 flex-col items-center"
+            className="group/handle absolute top-0 z-10 flex h-full w-12 -translate-x-1/2 flex-col items-center outline-none"
             style={{ left: `${value}%` }}
             role="slider"
+            tabIndex={0}
             aria-valuenow={Math.round(value)}
             aria-valuemin={10}
             aria-valuemax={90}
-            aria-label="Önce sonra"
+            aria-valuetext={`Yüzde ${Math.round(value)} önce`}
+            aria-label="Önce sonra karşılaştırması"
+            onKeyDown={(e) => {
+              const next: Record<string, number> = {
+                ArrowLeft: value - 5,
+                ArrowRight: value + 5,
+                Home: 10,
+                End: 90,
+              };
+              if (!(e.key in next)) return;
+              e.preventDefault();
+              setHint(false);
+              setValue(Math.min(90, Math.max(10, next[e.key])));
+            }}
           >
             <span className="h-full w-px bg-champagne" />
-            <span className="absolute top-1/2 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border border-champagne bg-canvas/95 text-champagne shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
-              ↔
+            <span className="absolute top-1/2 grid h-14 w-14 -translate-y-1/2 place-items-center rounded-full border border-champagne/70 bg-canvas/80 text-champagne shadow-[0_8px_30px_rgba(0,0,0,0.35)] backdrop-blur-md group-focus-visible/handle:ring-2 group-focus-visible/handle:ring-champagne/70">
+              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden>
+                <path d="M9 7l-5 5 5 5M15 7l5 5-5 5" />
+              </svg>
             </span>
           </div>
         </div>

@@ -51,7 +51,7 @@ export function MagneticButton({
     y.set(0);
   };
 
-  const classes = `inline-flex min-h-12 items-center justify-center gap-3 px-6 py-3.5 font-mono text-[9px] tracking-[0.18em] uppercase transition-colors duration-500 sm:min-h-[3rem] sm:px-8 sm:text-[10px] sm:tracking-[0.24em] ${variants[variant]} ${className}`;
+  const classes = `inline-flex min-h-12 items-center justify-center gap-3 px-6 py-3.5 font-mono text-[10px] tracking-[0.18em] uppercase transition-colors duration-500 sm:min-h-[3rem] sm:px-8 sm:text-[11px] sm:tracking-[0.24em] ${variants[variant]} ${className}`;
 
   if (href) {
     return (
