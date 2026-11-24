@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { Preloader } from "@/components/ui/Preloader";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { Atmosphere } from "@/components/ui/Atmosphere";
@@ -8,6 +9,11 @@ import { WhatsAppFloat } from "@/components/nav/WhatsAppFloat";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
 
 export function ClientProviders({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  if (pathname?.startsWith("/katalog/pdf")) {
+    return <>{children}</>;
+  }
+
   return (
     <SmoothScroll>
       <Atmosphere />

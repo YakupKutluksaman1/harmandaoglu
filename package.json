@@ -9,7 +9,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "catalog:pdf": "node scripts/generate-catalog-pdf.mjs",
+    "catalog:pdf:build": "npm run build && node scripts/generate-catalog-pdf.mjs"
   },
   "dependencies": {
     "framer-motion": "^14.3.0",
@@ -26,6 +28,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.2",
+    "playwright": "^1.52.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

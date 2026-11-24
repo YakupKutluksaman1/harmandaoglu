@@ -3,6 +3,7 @@ export const navLinks = [
   { href: "/#donusum", label: "Dönüşüm" },
   { href: "/#surec", label: "Süreç" },
   { href: "/#malzeme", label: "Malzeme" },
+  { href: "/katalog", label: "Katalog" },
   { href: "/#iletisim", label: "Özel Proje" },
 ] as const;
 

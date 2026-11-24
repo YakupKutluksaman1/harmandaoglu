@@ -92,7 +92,7 @@ export function Navbar() {
           href="/#hero"
           aria-label="Harmandaoğlu — başa dön"
           onClick={() => setOpen(false)}
-          className="relative z-[70] flex items-center gap-2.5"
+          className="relative z-[70] flex shrink-0 items-center gap-2.5"
         >
           <span className="grid h-8 w-8 place-items-center border border-[rgba(227,218,201,0.35)] font-serif text-[14px] text-champagne">
             H
@@ -109,12 +109,13 @@ export function Navbar() {
           </span>
         </a>
 
-        <p className="meta pointer-events-none absolute top-1/2 left-1/2 hidden max-w-[40vw] -translate-x-1/2 -translate-y-1/2 truncate text-center text-muted xl:block">
+        {/* Geniş ekranda orta; akışta değil — menüyle çakışmaması için yalnızca 2xl+ */}
+        <p className="meta pointer-events-none absolute top-1/2 left-1/2 hidden max-w-[34vw] -translate-x-1/2 -translate-y-1/2 truncate text-center text-muted 2xl:block">
           Antalya · {office.coords} · Akdeniz
         </p>
 
-        <div className="relative z-[70] flex items-center gap-5 xl:gap-9">
-          <nav className="hidden items-center gap-7 lg:flex">
+        <div className="relative z-[70] flex shrink-0 items-center gap-5 xl:gap-9">
+          <nav className="hidden items-center gap-7 lg:flex" aria-label="Ana menü">
             {menuLinks.map((link) => (
               <MagneticNavLink key={link.href} href={link.href} label={link.label} />
             ))}
